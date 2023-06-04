@@ -1,0 +1,17 @@
+{% extends 'PhoneStore/layout.html' %}
+
+{% block body%}
+ <h1> Phone : {{ Phone.name }} </h1>
+ <ul> 
+    <li> id : {{phone.id}} </li>
+    <li> Manufacturer : {{ phone.manufacturer }} </li>
+    <li> Phone Price : {{ phone.price }} SAR </li>
+    <li> Description : {{ phone.description }} </li>
+       
+             {% csrf_token %}
+            
+            
+       
+        <a href="{% url  'PhoneStore:phone' %}">Go Back</a>
+{% endblock %}
+    </html>

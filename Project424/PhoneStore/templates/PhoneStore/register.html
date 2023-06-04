@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+      .signup-form {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.signup-form input {
+    width: 100%;
+}
+
+.signup-form button {
+    margin-top: 10px;
+}
+    </style>
+</head>
+<body>
+{% block content %}
+
+
+<form action="{% url 'PhoneStore:register' %}" method="post" class="signup-form">
+    {% csrf_token %}
+
+    {{ form.username.label }}
+    {{ form.username }}
+    <br>
+    {{ form.email.label }}
+    {{ form.email }}
+    <br>
+    {{ form.first_name.label }}
+    {{ form.first_name }}
+    <br>
+
+    {{ form.last_name.label }}
+    {{ form.last_name }}
+    <br>
+    {{ form.password1.label }}
+    {{ form.password1 }}
+    <br>
+    {{ form.password2.label }}
+    {{ form.password2 }}
+    <input type="submit" value="Sign Up">
+</form>
+{% endblock %}
+</form>
+</body>
+</html>
