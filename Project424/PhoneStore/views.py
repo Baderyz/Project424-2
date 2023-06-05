@@ -5,19 +5,23 @@ from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .models import Phone
-from PhoneStore.forms import SignUpForm
 
 
-def register(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return reverse()
-    else:
-        form = SignUpForm()
+# from .forms import SignUpForm
 
-    return render(request, 'PhoneStore/register.html', {'form': form})
+
+# def register(request):
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             return login(username,password)
+#     else:
+#         form = SignUpForm()
+#
+#     return render(request, 'PhoneStore/register.html', {'form': form})
 
 
 def logina(request):
@@ -47,19 +51,19 @@ class NewItemForm(forms.Form):
 
 
 def index(request):
-
     if "PhoneStore" not in request.session:
-
         request.session["PhoneStore"] = []
 
     return render(request, "PhoneStore/index.html", {"PhoneStore": request.session["PhoneStore"]})
 
 
-def add(request,phone_id):
-    phone = Phone.objects.get(id = phone_id)
+def add(request, phone_id):
+    phone = Phone.objects.get(id=phone_id)
     return render(request, 'PhoneStore/specificProduct.html', {
         'phone': phone
     })
+
+
 # user add new product
 
 
@@ -69,6 +73,30 @@ class uaddproductForm(forms.ModelForm):
         # fields = ['name', 'manufacturer', 'price', 'description']
         fields = "__all__"
 
+
+from django.views.generic.edit import CreateView
+from django.contrib.auth.models import User
+
+from django.views.generic.edit import CreateView
+from .forms import MyUserCreationForm
+
+
+# class RegisterView(CreateView):
+#     form_class = MyUserCreationForm
+#
+#     def form_valid(self, form):
+#         form.save()
+#         return redirect('home')
+def register(request):
+    if request.method == 'POST':
+        form = MyUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = MyUserCreationForm()
+
+    return render(request, 'PhoneStore/register.html', {'form': form})
 
 def viewaddform(request):
     if request.method == 'POST':
