@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .models import Phone, MyUser
+from .models import  MyUser,Phone
 
 
 # from .forms import SignUpForm
@@ -22,9 +22,6 @@ from .models import Phone, MyUser
 #         form = SignUpForm()
 #
 #     return render(request, 'PhoneStore/register.html', {'form': form})
-
-
-
 
 
 def phone(request):
@@ -46,6 +43,12 @@ def index(request):
 
 def add(request, phone_id):
     phone = Phone.objects.get(id=phone_id)
+    username = request.user.username
+    user = MyUser.objects.get(username=username)
+    if request.user.is_authenticated:
+        user.cart.add(phone)
+    else:
+        pass
     return render(request, 'PhoneStore/specificProduct.html', {
         'phone': phone
     })
@@ -85,6 +88,7 @@ def register(request):
 
     return render(request, 'PhoneStore/register.html', {'form': form})
 
+
 def viewaddform(request):
     if request.method == 'POST':
 
@@ -97,6 +101,8 @@ def viewaddform(request):
 
     return render(request, "PhoneStore/userAddP.html",
                   {"form": uaddproductForm()})
+
+
 #
 def logina(request):
     if request.method == 'POST':
@@ -106,7 +112,7 @@ def logina(request):
         if user is not None:
             login(request, user)
             # replace 'home'with the name of your home page URL pattern
-           #url = reverse('PhoneStore/register')
+            # url = reverse('PhoneStore/register')
             return redirect(reverse("PhoneStore:phone"))
         else:
             # handle invalid login credentials

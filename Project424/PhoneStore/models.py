@@ -20,7 +20,7 @@ class MyUser(AbstractUser):
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     email = models.EmailField(max_length=254)
-    # cart = models.ManyToManyField(Phone,blank=true,related_name=cart)
+    cart = models.ManyToManyField(Phone,blank=True,related_name='cart')
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
