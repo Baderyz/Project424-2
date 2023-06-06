@@ -2,7 +2,10 @@
 
 
 {% block body %}
-<h1 color = "white">Phones</h1>
+<br>
+<h1 style="text-align:center;  "> <b> <b>Here is our offers</b></b></h1>
+<br>
+<br>
 
 <style>
   table{
@@ -13,22 +16,24 @@
   td{
     border: 1px solid black;
     padding: 2px;
+    text-align:center;
   }
 
   th{
     border: 1px solid black;
     padding: 2px;
+    text-align:center;
   }
 </style>
 <table class="table table-striped">
     <tr>
-        <th>id</th>
+        <th>ID</th>
         <th>name</th>
         <th>manufacturer</th>
         
         {% for p in phone %}
         <tr>
-            <td><a href = "{% url 'PhoneStore:add' p.id %}">{{p.id}}</a></td>
+            <td ><a href = "{% url 'PhoneStore:add' p.id %}">{{p.id}}</a></td>
             <td>{{p.name}}</td>
             <td>{{p.manufacturer}}</td>
            

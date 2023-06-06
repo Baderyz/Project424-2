@@ -4,32 +4,50 @@
 <html lang="en">
   <head>
     <title>add new product</title>
+    {% block body %}
     <style>
+      img{
+        width:100px;
+      }
       body {
         text-align: center;
       }
       form {
         display: inline-block;
       }
+      .center {
+        border: 5px solid;
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+      }
+      .center {
+        border: none;
+      }
     </style>
   </head>
-  {% block body %}
+
   <body>
-    <form
-      action="{% url 'PhoneStore:viewaddform'%}"
-      method="post"
-      class="viewaddform"
-    >
-      {% csrf_token %} {{form.name.label}} {{form.name}}
-      <br />
-      {{form.manufacturer.label}} {{form.manufacturer}}
-      <br />
-      {{form.price.label}} {{form.price}}
-      <br />
-      {{form.description.label}} {{form.description}}
-      <br />
-      <input type="submit" value="submit" />
-    </form>
+    <div class="center">
+      <form
+        action="{% url 'PhoneStore:viewaddform'%}"
+        method="post"
+        class="viewaddform"
+      >
+        {% csrf_token %} {{form.name.label}} <br />
+        {{form.name}}
+        <br />
+        {{form.manufacturer.label}} <br />{{form.manufacturer}}
+        <br />
+        {{form.price.label}} <br />
+        {{form.price}}
+        <br />
+        {{form.description.label}} <br />
+        {{form.description}}
+        <br />
+        <input type="submit" value="submit" />
+      </form>
+    </div>
   </body>
   {% endblock %}
 </html>
