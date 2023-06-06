@@ -5,6 +5,7 @@ from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .models import  MyUser,Phone
+from .forms import ItemForm
 
 
 # from .forms import SignUpForm
@@ -120,3 +121,20 @@ def logina(request):
             pass
     else:
         return render(request, 'PhoneStore/login.html')
+    
+
+
+def Update(request , phone_id):
+    phone = Phone.objects.get(id = phone_id)
+    form = ItemForm(request.POST or None,instance=phone)
+    if form.is_valid():
+        form.save()
+
+    return render(request, "PhoneStore/update.html",
+                  {'phone':phone,
+                   'form':form})   
+
+
+def book(request):
+    if request.method == 'POST':
+     return 
