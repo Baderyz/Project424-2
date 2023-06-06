@@ -24,20 +24,7 @@ from .models import Phone
 #     return render(request, 'PhoneStore/register.html', {'form': form})
 
 
-def logina(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            # replace 'home'with the name of your home page URL pattern
-            return redirect('home')
-        else:
-            # handle invalid login credentials
-            pass
-    else:
-        return render(request, 'PhoneStore/login.html')
+
 
 
 def phone(request):
@@ -92,7 +79,7 @@ def register(request):
         form = MyUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect(reverse('PhoneStore:login'))
     else:
         form = MyUserCreationForm()
 
@@ -100,6 +87,7 @@ def register(request):
 
 def viewaddform(request):
     if request.method == 'POST':
+
         form = uaddproductForm(request.POST)
         if (form.is_valid()):
             form.save()
@@ -110,3 +98,19 @@ def viewaddform(request):
     return render(request, "PhoneStore/userAddP.html",
                   {"form": uaddproductForm()})
 #
+def logina(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            # replace 'home'with the name of your home page URL pattern
+           #url = reverse('PhoneStore/register')
+            return redirect(reverse("PhoneStore:phone"))
+        else:
+            # handle invalid login credentials
+            return redirect(reverse("PhoneStore:logina"))
+            pass
+    else:
+        return render(request, 'PhoneStore/login.html')

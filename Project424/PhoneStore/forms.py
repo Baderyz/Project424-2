@@ -16,9 +16,11 @@ from .models import MyUser
 class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = MyUser
+        password1 = forms.CharField(widget=forms.PasswordInput)
+        password2= forms.CharField(widget=forms.PasswordInput)
         fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'email')
 
 
-class Meta:
-    model = User
-    fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name')
+# class Meta:
+#     model = User
+#     fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name')

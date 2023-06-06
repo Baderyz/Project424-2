@@ -20,13 +20,13 @@ class MyUser(AbstractUser):
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     email = models.EmailField(max_length=254)
-
+    # cart = models.ManyToManyField(Phone,blank=true,related_name=cart)
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
 
 
-class Cart(models.Model):
-    username = models.OneToOneField(MyUser(), on_delete=models.CASCADE)
-    item = models.ForeignKey(Phone, on_delete=models.CASCADE, related_name="item")
-    quantity = models.IntegerField()
+# class Cart(models.Model):
+#     username = models.ManyToManyRel(MyUser())
+#     item = models.ForeignKey(Phone, on_delete=models.CASCADE, related_name="item")
+#     quantity = models.IntegerField()
