@@ -43,6 +43,13 @@ def index(request):
 
 
 def add(request, phone_id):
+    if request.method == 'POST':
+     username = request.user.username
+     phone = Phone.objects.get(id=phone_id)
+     user = MyUser.objects.get(username=username)
+     user.cart.add(phone)
+     
+     
     phone = Phone.objects.get(id=phone_id)
     username = request.user.username
     user = MyUser.objects.get(username=username)
@@ -135,8 +142,3 @@ def Update(request , phone_id):
     return render(request, "PhoneStore/update.html",
                   {'phone':phone,
                    'form':form})   
-
-
-def book(request):
-    if request.method == 'POST':
-     return 
