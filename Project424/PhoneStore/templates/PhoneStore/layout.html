@@ -2,19 +2,22 @@
 <html lang="en">
     <head>
         <title> Add item </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        image
     </head>
     <body>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                
+                <li><a href='{% url  "PhoneStore:phone" %}'>Phone List</a></li>
+                <li><a href='{% url  "PhoneStore:login" %}'>Login</a></li>
+                <li><a href='{% url  "PhoneStore:register" %}'>Register</a></li>
+                <li><a href='{% url  "PhoneStore:viewaddform" %}'>Add Product</a></li>
+            </ul>
+        </nav>
          {% block body%}
-         <nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/phonestore/add/">Add</a></li>
-        <li><a href="/phonestore/list/">Phone List</a></li>
-        <li><a href="/phonestore/logina/">Login</a></li>
-        <li><a href="/phonestore/register/">Register</a></li>
-        <li><a href="/phonestore/addProduct/">Add Product</a></li>
-    </ul>
-</nav>
+       
         {% endblock %}
 
     </body>
