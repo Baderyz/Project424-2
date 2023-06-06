@@ -60,9 +60,22 @@ def add(request, phone_id):
 
 class uaddproductForm(forms.ModelForm):
     class Meta:
-        model = MyUser
+        model = Phone
         # fields = ['name', 'manufacturer', 'price', 'description']
         fields = "__all__"
+
+def viewaddform(request):
+    if request.method == 'POST':
+
+        form = uaddproductForm(request.POST)
+        if (form.is_valid()):
+            form.save()
+
+    else:
+        form = uaddproductForm()
+
+    return render(request, "PhoneStore/userAddP.html",
+                  {"form": uaddproductForm()})
 
 
 from django.views.generic.edit import CreateView
@@ -90,18 +103,7 @@ def register(request):
     return render(request, 'PhoneStore/register.html', {'form': form})
 
 
-def viewaddform(request):
-    if request.method == 'POST':
 
-        form = uaddproductForm(request.POST)
-        if (form.is_valid()):
-            form.save()
-
-    else:
-        form = uaddproductForm()
-
-    return render(request, "PhoneStore/userAddP.html",
-                  {"form": uaddproductForm()})
 
 
 #

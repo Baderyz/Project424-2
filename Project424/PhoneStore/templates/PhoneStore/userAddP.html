@@ -1,3 +1,5 @@
+{% extends "PhoneStore/layout.html" %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +13,7 @@
       }
     </style>
   </head>
+  {% block body %}
   <body>
     <form
       action="{% url 'PhoneStore:viewaddform'%}"
@@ -28,4 +31,5 @@
       <input type="submit" value="submit" />
     </form>
   </body>
+  {% endblock %}
 </html>
