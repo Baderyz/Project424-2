@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .models import Phone
+from .models import Phone, MyUser
 
 
 # from .forms import SignUpForm
@@ -56,7 +56,7 @@ def add(request, phone_id):
 
 class uaddproductForm(forms.ModelForm):
     class Meta:
-        model = Phone
+        model = MyUser
         # fields = ['name', 'manufacturer', 'price', 'description']
         fields = "__all__"
 
