@@ -9,8 +9,8 @@ class Phone(models.Model):
     description = models.TextField()
 
 
-def str(self):
-    return f"{self.id} {self.name} {self.price} {self.manufacturer} {self.description}"
+    def __str__(self):
+        return f"{self.id} {self.name} {self.price} {self.manufacturer} {self.description}"
 
 
 class MyUser(AbstractUser):
