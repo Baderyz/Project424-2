@@ -126,7 +126,7 @@ def logina(request):
             return redirect(reverse("PhoneStore:phone"))
         else:
             # handle invalid login credentials
-            return redirect(reverse("PhoneStore:logina"))
+            return redirect(reverse("PhoneStore:login"))
             pass
     else:
         return render(request, 'PhoneStore/login.html')
