@@ -8,7 +8,6 @@ class Phone(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.TextField()
 
-
     def __str__(self):
         return f"{self.id} {self.name} {self.price} {self.manufacturer} {self.description}"
 
@@ -20,11 +19,11 @@ class MyUser(AbstractUser):
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     email = models.EmailField(max_length=254)
-    cart = models.ManyToManyField(Phone,blank=True,related_name='cart')
+    cart = models.ManyToManyField(Phone, blank=True, related_name='cart')
+
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
-
 
 # class Cart(models.Model):
 #     username = models.ManyToManyRel(MyUser())

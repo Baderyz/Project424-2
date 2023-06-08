@@ -39,7 +39,7 @@ def index(request):
     if "PhoneStore" not in request.session:
         request.session["PhoneStore"] = []
 
-    return render(request, "PhoneStore/index.html", {"PhoneStore": request.session["PhoneStore"]})
+    return redirect(reverse("PhoneStore:login"))
 
 
 def add(request, phone_id):
